@@ -1,9 +1,4 @@
 
-## Author
-
-- [@bhavinpathak](https://github.com/Bhavin-Pathak)
-
-
 # Flutter MINI-Projects
 
 ## Getting Started
@@ -50,6 +45,11 @@ Start or Run
 ```bash
   flutter run
 ```
+
+
+## Author
+
+- [@bhavinpathak](https://github.com/Bhavin-Pathak)
 
 
 ## Support
