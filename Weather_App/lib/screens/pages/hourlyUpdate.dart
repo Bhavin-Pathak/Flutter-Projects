@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:weather_appgetx/Models/Weather_hourly.dart';
 import 'package:weather_appgetx/controller/globle_controller.dart';
 
+// ignore: must_be_immutable
 class HourlyData extends StatelessWidget {
   final WeatherDataHourly weatherDataHourly;
   HourlyData({super.key, required this.weatherDataHourly});
@@ -73,6 +74,7 @@ class HourlyData extends StatelessWidget {
 }
 
 //! Details Weather Class
+// ignore: must_be_immutable
 class Details extends StatelessWidget {
   int temp;
   int index;
