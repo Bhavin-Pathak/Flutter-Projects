@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import 'styled_text.dart';
 
+//Globle Variables for Alignment
 const startAlignment = Alignment.topLeft;
 const endAlignment = Alignment.bottomRight;
 
@@ -28,12 +29,13 @@ class GradientContainer extends StatefulWidget {
 class _GradientContainerState extends State<GradientContainer> {
 //? Screen Size
   var size, height, width;
-
+//? Active Image Dices Variable
   var activeImage = 'assets/images/dice5.png';
 
   void roll() {
     //! Function to roll
-    var rendomDices = Random().nextInt(6) + 1;
+    var rendomDices = Random().nextInt(6) +
+        1; //Generate a random number between 0 and 6  for each active image in the scene
     setState(() {
       if (activeImage == 'assets/images/dice1.png') {
         activeImage = 'assets/images/dice$rendomDices.png';
@@ -58,7 +60,7 @@ class _GradientContainerState extends State<GradientContainer> {
             widget.Color3,
             widget.Color4,
           ],
-          begin: startAlignment,
+          begin: startAlignment, //Called Alignment Varibles
           end: endAlignment,
         ),
       ),
@@ -68,7 +70,7 @@ class _GradientContainerState extends State<GradientContainer> {
           children: [
             Image.asset(
               activeImage,
-              width: width / 2,
+              width: width / 2, // Called ScreenSize Varibles
             ),
             SizedBox(
               height: height * 0.05,
