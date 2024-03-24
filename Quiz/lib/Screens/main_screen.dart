@@ -1,8 +1,13 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatelessWidget {
-  const MainScreen({super.key});
-
+  const MainScreen(
+    this.StartQuiz, {
+    super.key,
+  });
+  final void Function() StartQuiz;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -27,6 +32,7 @@ class MainScreen extends StatelessWidget {
           OutlinedButton.icon(
             onPressed: () {
               //! Function Call
+              StartQuiz();
             },
             label: const Text(
               'Start',
