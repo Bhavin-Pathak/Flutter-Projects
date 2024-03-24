@@ -32,7 +32,7 @@ class MainScreen extends StatelessWidget {
           OutlinedButton.icon(
             onPressed: () {
               //! Function Call
-              StartQuiz();
+              StartQuiz;
             },
             label: const Text(
               'Start',
