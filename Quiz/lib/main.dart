@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
 
   @override
   void initState() {
-    activeScreen = const MainScreen(setActiveScreen);
+    activeScreen = MainScreen(setActiveScreen);
     super.initState();
   }
 
