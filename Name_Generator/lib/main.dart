@@ -23,8 +23,8 @@ import 'package:name_generator/Girls/gsagittarius.dart';
 import 'package:name_generator/Girls/gscorpio.dart';
 import 'package:name_generator/Girls/gtaurus.dart';
 import 'package:name_generator/Girls/gvirgo.dart';
-import 'package:name_generator/Screens/boys_names_screen.dart';
-import 'package:name_generator/Screens/girls_names_screen.dart';
+import 'package:name_generator/Screens/boy_screen.dart';
+import 'package:name_generator/Screens/girl_screen.dart';
 import 'package:name_generator/Screens/splashscreen.dart';
 
 void main() {
