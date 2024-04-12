@@ -20,72 +20,113 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'ADDING 2 VALUES',
+          style: TextStyle(color: Colors.white),
+        ),
+        backgroundColor: Colors.deepOrange,
+        centerTitle: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 16),
+            TextField(
+              controller: firstNumber,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: 'Enter Value 1',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
             const Text(
-              'Adder',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+              'OR',
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextField(
+              controller: secondNumber,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                labelText: 'Enter Value 2',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Your Answer is :-  $answer',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(height: 16),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Expanded(
-                  child: TextField(
-                    controller: firstNumber,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(labelText: 'Number 1'),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                const Text('+'),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: TextField(
-                    controller: secondNumber,
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(labelText: 'Number 2'),
-                  ),
-                ),
-                const SizedBox(width: 8),
-                const Text('='),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Text(
-                      'Answer: $answer',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.blueAccent),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.all(16),
+                    ),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(height: 16),
-            Row(
-              children: [
-                ElevatedButton(
                   onPressed: () {
-                    calculateAndStore();
+                    calculateAndStoreValues();
                   },
-                  child: const Text('Calculate'),
+                  child: const Text(
+                    'Calculate',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
-                const SizedBox(width: 8),
+                const SizedBox(width: 10),
                 ElevatedButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.orange),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      const EdgeInsets.all(16),
+                    ),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
                   onPressed: () {
-                    clearNumbers();
+                    clearNumbersOnTextField();
                   },
-                  child: const Text('Clear'),
+                  child: const Text(
+                    'Clear',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ),
               ],
             ),
@@ -95,11 +136,16 @@ class _MainScreenState extends State<MainScreen> {
                 itemCount: history.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(history[index]),
+                    title: Text(
+                      history[index],
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
                     trailing: IconButton(
-                      icon: const Icon(Icons.delete),
+                      icon: const Icon(Icons.delete_sweep_outlined),
                       onPressed: () {
-                        deleteEntry(index);
+                        deleteEntryFromList(index);
                       },
                     ),
                   );
@@ -112,7 +158,7 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
-  void calculateAndStore() {
+  void calculateAndStoreValues() {
     if (firstNumber.text.isNotEmpty && secondNumber.text.isNotEmpty) {
       double result =
           double.parse(firstNumber.text) + double.parse(secondNumber.text);
@@ -124,7 +170,7 @@ class _MainScreenState extends State<MainScreen> {
     }
   }
 
-  void clearNumbers() {
+  void clearNumbersOnTextField() {
     setState(() {
       firstNumber.clear();
       secondNumber.clear();
@@ -132,7 +178,7 @@ class _MainScreenState extends State<MainScreen> {
     });
   }
 
-  void deleteEntry(int index) {
+  void deleteEntryFromList(int index) {
     setState(() {
       history.removeAt(index);
     });
