@@ -20,9 +20,6 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Adder App'),
-      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
