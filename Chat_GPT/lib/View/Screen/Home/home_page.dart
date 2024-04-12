@@ -107,14 +107,6 @@ class _HomePageState extends State<HomeScreen> {
                 );
               },
             ),
-            Column(
-              children: [
-                Text(
-                  'Design And Developed By :- RND TECHNOSOFT',
-                  style: TextStyle(color: Colors.grey.shade700, fontSize: 5),
-                ),
-              ],
-            )
           ],
         ),
       ),
