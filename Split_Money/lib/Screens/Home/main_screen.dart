@@ -1,7 +1,5 @@
 // ignore_for_file: avoid_unnecessary_containers
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 //GetX
 import 'package:get/get.dart';
 //MainController
@@ -20,32 +18,28 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.deepOrange,
+        centerTitle: true,
+        title: const Text(
+          'Split-Money With Friends',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
+        ),
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 20),
-                      child: Text(
-                        'SPLIT-MONEY',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 26),
-                      ),
-                    )
-                  ],
-                ),
                 Card(
                   color: Colors.blue.shade700.withOpacity(0.8),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        vertical: 20, horizontal: 10),
+                        vertical: 15, horizontal: 10),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
@@ -169,6 +163,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Obx(
                   () => Slider(
+                    activeColor: Colors.deepOrange,
                     label: homeController.currentSliderValue.value
                         .round()
                         .toString(),
@@ -206,8 +201,10 @@ class HomeScreen extends StatelessWidget {
                                     GestureDetector(
                                       onTap: () => homeController.taxDecrease(),
                                       child: const CircleAvatar(
+                                        backgroundColor: Colors.deepOrange,
                                         child: Icon(
                                             Icons.horizontal_rule_rounded,
+                                            color: Colors.white,
                                             size: 32),
                                       ),
                                     ),
@@ -222,8 +219,10 @@ class HomeScreen extends StatelessWidget {
                                     GestureDetector(
                                       onTap: () => homeController.tipIncrease(),
                                       child: const CircleAvatar(
+                                        backgroundColor: Colors.deepOrange,
                                         child: Icon(
                                             Icons.add_circle_outline_outlined,
+                                            color: Colors.white,
                                             size: 32),
                                       ),
                                     ),
@@ -307,8 +306,6 @@ class HomeScreen extends StatelessWidget {
                       if (homeController.tipAmount.value.length.isEqual(0)) {
                         homeController.tipAmount.value = '0';
 
-                        // Initializing the ResultData Model class with values and Passing the values
-                        // so that on ResultScreen we can use these values
                         Get.to(() => ResultScreen(
                               resultData: ResultData(
                                 homeController.equallyDivide(),

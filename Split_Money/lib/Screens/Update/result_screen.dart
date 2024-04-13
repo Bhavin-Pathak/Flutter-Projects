@@ -12,30 +12,24 @@ class ResultScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: Colors.deepOrange,
+        centerTitle: false,
+        title: const Text(
+          'Result ',
+          style: TextStyle(
+              fontWeight: FontWeight.bold, fontSize: 20, color: Colors.black),
+        ),
+      ),
       body: SafeArea(
           child: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(vertical: 30),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Result',
-                      style: TextStyle(
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              // child = 2 [ Result information Card Widget]
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
@@ -163,26 +157,25 @@ class ResultScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 40,
-              ),
-              // child = 4 [ Calculate Again Button ]
               ElevatedButton(
                 onPressed: () {
                   Get.back();
                 },
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all(Colors.blue),
-                  padding: MaterialStateProperty.all(
-                      const EdgeInsets.symmetric(vertical: 10)),
+                  shape: MaterialStateProperty.all(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
                 ),
-                child: const Text(
-                  'Calculate Again ?',
-                  style: TextStyle(fontSize: 20, color: Colors.white),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 10),
+                  child: Text(
+                    'Do You Want Calculate Again ??',
+                    style: TextStyle(fontSize: 20, color: Colors.white),
+                  ),
                 ),
-              ),
-              const SizedBox(
-                height: 50,
               ),
             ],
           ),
