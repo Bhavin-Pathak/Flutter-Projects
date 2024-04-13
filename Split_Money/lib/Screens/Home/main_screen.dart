@@ -1,5 +1,7 @@
 // ignore_for_file: avoid_unnecessary_containers
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 //GetX
 import 'package:get/get.dart';
 //MainController
@@ -7,7 +9,7 @@ import 'package:split_money/Screens/Home/main_controller.dart';
 //ResultScreen
 import 'package:split_money/Screens/Update/result_screen.dart';
 //Models
-import 'package:split_money/models/result_data.dart';
+import 'package:split_money/Models/result_model.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -26,23 +28,21 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisSize: MainAxisSize.min,
               children: [
-                // child = 1 [ Title Widget]
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(vertical: 20),
                       child: Text(
-                        'Split Bill',
+                        'SPLIT-MONEY',
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 26),
                       ),
                     )
                   ],
                 ),
-                // child = 2 [ information Card Widget]
                 Card(
-                  color: Colors.amber.shade700.withOpacity(0.8),
+                  color: Colors.blue.shade700.withOpacity(0.8),
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 20, horizontal: 10),
@@ -57,9 +57,10 @@ class HomeScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  'Total',
+                                  'Total Amount',
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,
+                                    color: Colors.white,
                                     fontSize: 22,
                                   ),
                                 ),
@@ -85,21 +86,24 @@ class HomeScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Friends',
+                                    'Friends :-',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
+                                        color: Colors.white,
                                         fontSize: 18),
                                   ),
                                   Text(
-                                    'Tax',
+                                    'Tax :-',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
+                                        color: Colors.white,
                                         fontSize: 18),
                                   ),
                                   Text(
-                                    'Tip',
+                                    'Tip :-',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
+                                        color: Colors.white,
                                         fontSize: 18),
                                   ),
                                 ],
@@ -150,15 +154,13 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                // child = 3 [ Friend Count Slider Widget]
-                const Divider(thickness: 2, height: 20),
                 const Padding(
                   padding: EdgeInsets.symmetric(vertical: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'How many friends ?',
+                        'How Many Friends Do You Have ??',
                         style: TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 18),
                       )
@@ -171,16 +173,14 @@ class HomeScreen extends StatelessWidget {
                         .round()
                         .toString(),
                     min: 1,
-                    max: 50,
-                    divisions: 50,
+                    max: 15,
+                    divisions: 15,
                     value: homeController.currentSliderValue.value.toDouble(),
                     onChanged: (value) {
                       homeController.currentSliderValue.value = value.toInt();
                     },
                   ),
                 ),
-                const Divider(thickness: 2, height: 20),
-                // child = 4 [ Tip and Tax Widget]
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 20),
                   child: Row(
@@ -203,11 +203,11 @@ class HomeScreen extends StatelessWidget {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: [
-                                    InkWell(
+                                    GestureDetector(
                                       onTap: () => homeController.taxDecrease(),
                                       child: const CircleAvatar(
                                         child: Icon(
-                                            Icons.horizontal_rule_outlined,
+                                            Icons.horizontal_rule_rounded,
                                             size: 32),
                                       ),
                                     ),
@@ -219,10 +219,12 @@ class HomeScreen extends StatelessWidget {
                                             fontSize: 18),
                                       ),
                                     ),
-                                    InkWell(
+                                    GestureDetector(
                                       onTap: () => homeController.tipIncrease(),
                                       child: const CircleAvatar(
-                                        child: Icon(Icons.add, size: 32),
+                                        child: Icon(
+                                            Icons.add_circle_outline_outlined,
+                                            size: 32),
                                       ),
                                     ),
                                   ],
@@ -242,9 +244,9 @@ class HomeScreen extends StatelessWidget {
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
                                   border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(16),
+                                    borderRadius: BorderRadius.circular(5),
                                   ),
-                                  label: const Text('Enter Tip Amount'),
+                                  label: const Text('Tip Amount (Optional)'),
                                 ),
                                 controller: homeController.tipAmountController,
                                 onChanged: (value) {
@@ -259,15 +261,13 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Divider(thickness: 2, height: 20),
-                // child = 5 [ Total amount textfield Widget]
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Padding(
                       padding: EdgeInsets.only(top: 40),
                       child: Text(
-                        'Enter Total Amount',
+                        'Enter Total Amount Of Bill',
                         style: TextStyle(
                             fontWeight: FontWeight.w700, fontSize: 18),
                       ),
@@ -280,10 +280,10 @@ class HomeScreen extends StatelessWidget {
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(5),
                       ),
                       label: const Text(
-                        'Enter Total Amount',
+                        'Total Amount',
                       ),
                     ),
                     controller: homeController.totalAmountController,
@@ -293,7 +293,6 @@ class HomeScreen extends StatelessWidget {
                     },
                   ),
                 ),
-                const Divider(thickness: 2, height: 20),
                 const SizedBox(
                   height: 25,
                 ),
@@ -303,7 +302,7 @@ class HomeScreen extends StatelessWidget {
                     // Testing and Checking the values first
                     if (homeController.totalAmount.value == '0' ||
                         homeController.totalAmount.value.length.isEqual(0)) {
-                      Get.snackbar('Warning', 'Enter Total Amount');
+                      Get.snackbar('Error', 'Please Enter Total Amount');
                     } else {
                       if (homeController.tipAmount.value.length.isEqual(0)) {
                         homeController.tipAmount.value = '0';
@@ -321,8 +320,6 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ));
                       } else {
-                        // Initializing the ResultData Model class with values and Passing the values
-                        // so that on ResultScreen we can use these values
                         Get.to(() => ResultScreen(
                               resultData: ResultData(
                                 homeController.equallyDivide(),
@@ -337,20 +334,20 @@ class HomeScreen extends StatelessWidget {
                     }
                   },
                   style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all(Colors.yellowAccent),
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
                     shape: MaterialStateProperty.all(
                       RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
+                        borderRadius: BorderRadius.circular(20),
                       ),
                     ),
                   ),
                   child: const Padding(
                     padding: EdgeInsets.symmetric(vertical: 15),
                     child: Text(
-                      'Split Bill Now',
+                      'Split Now',
                       style: TextStyle(
                         fontSize: 18,
+                        color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

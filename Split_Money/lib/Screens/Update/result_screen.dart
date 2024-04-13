@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 //Get
 import 'package:get/get.dart';
 //Models
-import 'package:split_money/models/result_data.dart';
+import 'package:split_money/Models/result_model.dart';
 
 class ResultScreen extends StatelessWidget {
   const ResultScreen({super.key, required this.resultData});
@@ -20,7 +20,6 @@ class ResultScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisSize: MainAxisSize.min,
             children: [
-              // child = 1 [Title]
               const Padding(
                 padding: EdgeInsets.symmetric(vertical: 30),
                 child: Row(
@@ -40,7 +39,7 @@ class ResultScreen extends StatelessWidget {
               Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16),
-                  color: Colors.yellow,
+                  color: Colors.blue.shade700.withOpacity(0.8),
                 ),
                 child: Padding(
                   padding:
@@ -59,12 +58,16 @@ class ResultScreen extends StatelessWidget {
                               const Text(
                                 'Equally Divided',
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 18),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                    color: Colors.white),
                               ),
                               Text(
                                 '${resultData.equalDivided} ₹',
                                 style: const TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 22),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 22,
+                                    color: Colors.white),
                               ),
                             ],
                           ),
@@ -80,22 +83,25 @@ class ResultScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'Friends',
+                                    'Friends :-',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
+                                        color: Colors.white,
                                         fontSize: 18),
                                   ),
                                   Text(
-                                    'Tax',
+                                    'Tax :-',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 18),
+                                        fontSize: 18,
+                                        color: Colors.white),
                                   ),
                                   Text(
-                                    'Tip',
+                                    'Tip :-',
                                     style: TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 18),
+                                        fontSize: 18,
+                                        color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -109,19 +115,22 @@ class ResultScreen extends StatelessWidget {
                                     resultData.friends,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 18),
+                                        fontSize: 18,
+                                        color: Colors.white),
                                   ),
                                   Text(
                                     '${resultData.tax} %',
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 18),
+                                        fontSize: 18,
+                                        color: Colors.white),
                                   ),
                                   Text(
                                     '${resultData.tip} ₹',
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w500,
-                                        fontSize: 18),
+                                        fontSize: 18,
+                                        color: Colors.white),
                                   ),
                                 ],
                               ),
@@ -133,7 +142,6 @@ class ResultScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              // child = 3 [pay information ]
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 20),
                 child: Row(
@@ -145,7 +153,7 @@ class ResultScreen extends StatelessWidget {
                         softWrap: true,
                         maxLines: 2,
                         overflow: TextOverflow.visible,
-                        'Everybody should pay  =  ${resultData.equalDivided} ₹',
+                        'Everybody Should Pay Only :-  ${resultData.equalDivided} ₹',
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -164,7 +172,7 @@ class ResultScreen extends StatelessWidget {
                   Get.back();
                 },
                 style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.orange),
+                  backgroundColor: MaterialStateProperty.all(Colors.blue),
                   padding: MaterialStateProperty.all(
                       const EdgeInsets.symmetric(vertical: 10)),
                 ),
