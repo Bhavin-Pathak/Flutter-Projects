@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 //Get
 import 'package:get/get.dart';
+import 'package:split_money/Components/action_button.dart';
+import 'package:split_money/Components/custom_cardtext.dart';
 //Models
 import 'package:split_money/Models/result_model.dart';
 
@@ -71,63 +73,15 @@ class ResultScreen extends StatelessWidget {
                         flex: 7,
                         child: Row(
                           children: [
-                            const Expanded(
-                              flex: 3,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Friends :-',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 18),
-                                  ),
-                                  Text(
-                                    'Tax :-',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                        color: Colors.white),
-                                  ),
-                                  Text(
-                                    'Tip :-',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 18,
-                                        color: Colors.white),
-                                  ),
-                                ],
-                              ),
+                            const CustomInfoColumn(
+                              friends: "Friends :-",
+                              tax: "Tax :-",
+                              tip: "Tip :-",
                             ),
-                            Expanded(
-                              flex: 2,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    resultData.friends,
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18,
-                                        color: Colors.white),
-                                  ),
-                                  Text(
-                                    '${resultData.tax} %',
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18,
-                                        color: Colors.white),
-                                  ),
-                                  Text(
-                                    '${resultData.tip} ₹',
-                                    style: const TextStyle(
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18,
-                                        color: Colors.white),
-                                  ),
-                                ],
-                              ),
+                            CustomInfoColumn(
+                              friends: resultData.friends,
+                              tax: '${resultData.tax} %',
+                              tip: '${resultData.tip} ₹',
                             ),
                           ],
                         ),
@@ -157,25 +111,11 @@ class ResultScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              ElevatedButton(
+              CustomActionButton(
                 onPressed: () {
                   Get.back();
                 },
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all(Colors.blue),
-                  shape: MaterialStateProperty.all(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                  ),
-                ),
-                child: const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 10),
-                  child: Text(
-                    'Do You Want Calculate Again ??',
-                    style: TextStyle(fontSize: 20, color: Colors.white),
-                  ),
-                ),
+                text: 'Do You Want Calculate Again ??',
               ),
             ],
           ),
