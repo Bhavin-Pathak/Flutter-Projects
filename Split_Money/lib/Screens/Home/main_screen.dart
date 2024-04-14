@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 //GetX
 import 'package:get/get.dart';
 import 'package:split_money/Components/action_button.dart';
+import 'package:split_money/Components/custom_cardtext.dart';
 //MainController
 import 'package:split_money/Screens/Home/main_controller.dart';
 //ResultScreen
@@ -76,33 +77,10 @@ class HomeScreen extends StatelessWidget {
                         Expanded(
                             child: Row(
                           children: [
-                            const Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Friends :-',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 18),
-                                  ),
-                                  Text(
-                                    'Tax :-',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 18),
-                                  ),
-                                  Text(
-                                    'Tip :-',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        color: Colors.white,
-                                        fontSize: 18),
-                                  ),
-                                ],
-                              ),
+                            const CustomInfoColumn(
+                              friends: "Friends :-",
+                              tax: "Tax :-",
+                              tip: "Tip :-",
                             ),
                             Expanded(
                               child: Column(
