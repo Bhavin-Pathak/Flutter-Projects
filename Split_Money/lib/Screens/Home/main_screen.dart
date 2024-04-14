@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 //GetX
 import 'package:get/get.dart';
+import 'package:split_money/Components/action_button.dart';
 //MainController
 import 'package:split_money/Screens/Home/main_controller.dart';
 //ResultScreen
@@ -295,13 +296,14 @@ class HomeScreen extends StatelessWidget {
                 const SizedBox(
                   height: 25,
                 ),
-                // child = 6 [ Split Bill Button Widget]
-                ElevatedButton(
+                CustomActionButton(
                   onPressed: () {
-                    // Testing and Checking the values first
                     if (homeController.totalAmount.value == '0' ||
                         homeController.totalAmount.value.length.isEqual(0)) {
-                      Get.snackbar('Error', 'Please Enter Total Amount');
+                      Get.snackbar('Error ⚠️', 'Please Enter Total Amount',
+                          snackPosition: SnackPosition.BOTTOM,
+                          dismissDirection: DismissDirection.down,
+                          backgroundColor: Colors.blueGrey);
                     } else {
                       if (homeController.tipAmount.value.length.isEqual(0)) {
                         homeController.tipAmount.value = '0';
@@ -330,25 +332,7 @@ class HomeScreen extends StatelessWidget {
                       }
                     }
                   },
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(Colors.blue),
-                    shape: MaterialStateProperty.all(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                  ),
-                  child: const Padding(
-                    padding: EdgeInsets.symmetric(vertical: 15),
-                    child: Text(
-                      'Split Now',
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
+                  text: 'Split Now',
                 ),
                 const SizedBox(height: 50),
               ],
