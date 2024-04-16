@@ -1,10 +1,13 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'dart:convert';
 import 'dart:math';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:met_bmi/style/style.dart';
 import '../components/layout_container.dart';
 import '../components/data_container.dart';
+import 'package:http/http.dart' as http;
 
 const activeColor = Color.fromARGB(255, 221, 118, 0);
 const inActiveColor = Color(0xFF212121);
@@ -25,6 +28,13 @@ class _HomeScreenState extends State<HomeScreen> {
   String result = "";
   String resultDetail = "";
   double bmi = 0;
+  List<String> quotes = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchQuotes();
+  }
 
   void updateBoxColor(int gender) {
     if (gender == 1) {
@@ -42,6 +52,28 @@ class _HomeScreenState extends State<HomeScreen> {
       } else {
         femaleBoxColor = inActiveColor;
         maleBoxColor = activeColor;
+      }
+    }
+  }
+
+  Future<void> fetchQuotes() async {
+    try {
+      final response =
+          await http.get(Uri.parse('https://zenquotes.io/api/random'));
+      if (response.statusCode == 200) {
+        final List<dynamic> data = json.decode(response.body);
+        setState(() {
+          quotes =
+              data.map((quote) => "${quote['q']} - ${quote['a']}").toList();
+        });
+      } else {
+        if (kDebugMode) {
+          print('Failed to load quotes. Status Code: ${response.statusCode}');
+        }
+      }
+    } catch (error) {
+      if (kDebugMode) {
+        print('Error fetching quotes: $error');
       }
     }
   }
@@ -246,19 +278,21 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          const Expanded(
+          Expanded(
             child: LayoutContainer(
               boxColor: inActiveColor,
               childwidget: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Text(
-                    'API DATA',
+                  const Text(
+                    'Quote of the day !!',
                     style: AppTextStyle.textStyle1,
                   ),
-                  SizedBox(
-                    height: 10.0,
-                  ),
+                  if (quotes.isNotEmpty)
+                    Text(
+                      quotes.first.toString(),
+                      style: AppTextStyle.textStyle1,
+                    ),
                 ],
               ),
             ),
